@@ -1,6 +1,9 @@
 from turtle import *
+import os
 import sys
 import math
+
+
 
 def cabin_one(longitud,mult):      
     color('red')    
@@ -17,6 +20,7 @@ def cabin_one(longitud,mult):
     end_fill()  
 
 cabin_one(int(sys.argv[1]),2)
-#cv = getcanvas()
-#cv.postscript(file="file_name.ps", colormode='color')
+cv = getcanvas()
+cv.postscript(file="file_name.ps", colormode='color')
+
 done()
