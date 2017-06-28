@@ -1,0 +1,120 @@
+html, body, #page {
+    height:100%;
+    width:100%;
+    margin:0;
+    padding:0;
+    font-family: 'Varela Round', sans-serif !important;
+}
+
+/* unvisited link */
+a:link {
+    color: #2F4FFF;
+    text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+    color: #2F4FFF;
+    text-decoration: none;
+}
+
+/* mouse over link */
+a:hover {
+    color: #2F4FFF;
+    text-decoration: none;
+}
+
+/* selected link */
+a:active {
+    color: #2F4FFF;
+    text-decoration: none;
+}
+.tag_round{	
+	padding-top: 20px;
+	background-color: white; 
+	border-radius: 5px;
+	display: inline-block;
+	height: 40px;
+	width: auto;
+}
+
+.tag_round:hover {	
+	padding-top: 20px;
+	background-color: white; 
+	border-radius: 5px;
+	display: inline-block;
+	height: 40px;
+	width: auto;
+}
+
+.color {
+	background-color: white;	
+}
+
+.selector_section {
+	height: auto;
+	padding-top: 20px;
+	padding-bottom: 20px;	
+	text-align: center;
+	background-color: #2F4FFF;
+}
+
+
+.first_section {
+	font-size: 40px;
+	text-align: center;		
+	color: #4F4FFF;	
+	margin-top: 60px;
+    margin-bottom: 40px;
+    
+}
+
+.footer_prop{
+	text-align: center;
+	width: 100%;
+	height: 20%;
+	bottom: 0;
+}
+
+.center_names {	
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.img_container{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	text-align: center;	
+}
+.plane_section{	
+	padding-top: 20px;
+	padding-bottom:20px;
+	width: 100%;
+	height: 40%;
+	background-image: url("sky2.jpg");
+	background-attachment: fixed;
+}
+.plane {
+	width: 400px;
+    height: : 400px;
+
+}
+
+.font_selector{
+	margin-right: 3em;
+	margin-left: 3em;
+}
+
+@media (max-width: 800px) {
+	.font_selector{
+		margin-right: 0.9em;
+		margin-left: 0.9em;
+	}
+	.plane {
+	width: 300px;
+    height: : 300px;
+
+}
+
+}
+

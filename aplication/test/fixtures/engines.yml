@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  power: 9.99
+  fuel_consumption: 9.99
+
+two:
+  name: MyString
+  power: 9.99
+  fuel_consumption: 9.99

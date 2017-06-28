@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @plane.name %>
+</p>
+
+<p>
+  <strong>Mass:</strong>
+  <%= @plane.mass %>
+</p>
+
+<p>
+  <strong>Budget:</strong>
+  <%= @plane.budget %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @plane.category.name %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @plane.user.email %>
+</p>
+
+<p>
+  <strong>Wing surface:</strong>
+  <%= @plane.wing_surface %>
+</p>
+
+<p>
+  <strong>Lift:</strong>
+  <%= @plane.lift %>
+</p>
+
+<%= link_to 'Edit', edit_plane_path(@plane) %> |
+<%= link_to 'Back', planes_path %>

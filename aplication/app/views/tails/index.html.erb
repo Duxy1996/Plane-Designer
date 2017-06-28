@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tails</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tails.each do |tail| %>
+      <tr>
+        <td><%= tail.name %></td>
+        <td><%= tail.description %></td>
+        <td><%= link_to 'Show', tail %></td>
+        <td><%= link_to 'Edit', edit_tail_path(tail) %></td>
+        <td><%= link_to 'Destroy', tail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tail', new_tail_path %>

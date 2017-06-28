@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Wings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @wings.each do |wing| %>
+      <tr>
+        <td><%= wing.name %></td>
+        <td><%= wing.description %></td>
+        <td><%= link_to 'Show', wing %></td>
+        <td><%= link_to 'Edit', edit_wing_path(wing) %></td>
+        <td><%= link_to 'Destroy', wing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Wing', new_wing_path %>

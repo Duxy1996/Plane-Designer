@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Fuselages</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @fuselages.each do |fuselage| %>
+      <tr>
+        <td><%= fuselage.name %></td>
+        <td><%= fuselage.description %></td>
+        <td><%= link_to 'Show', fuselage %></td>
+        <td><%= link_to 'Edit', edit_fuselage_path(fuselage) %></td>
+        <td><%= link_to 'Destroy', fuselage, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Fuselage', new_fuselage_path %>

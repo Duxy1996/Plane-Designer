@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Planes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name    </th>
+      <th>Mass    </th>
+      <th>Budget  </th>
+      <th>Category</th>
+      <th>Wing surface</th>
+      <th>Lift    </th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @planes.each do |plane| %>
+      <tr>
+        <td><%= plane.name %></td>
+        <td><%= plane.mass %></td>
+        <td><%= plane.budget %></td>
+        <td><%= plane.category.name %></td>
+        <td><%= plane.wing_surface %></td>
+        <td><%= plane.lift %></td>
+        <td><%= link_to 'Show', plane %></td>
+        <td><%= link_to 'Edit', edit_plane_path(plane) %></td>
+        <td><%= link_to 'Destroy', plane, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Plane', new_plane_path %>
+<br>
+<%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
+

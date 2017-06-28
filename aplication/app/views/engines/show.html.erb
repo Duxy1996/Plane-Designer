@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @engine.name %>
+</p>
+
+<p>
+  <strong>Power:</strong>
+  <%= @engine.power %>
+</p>
+
+<p>
+  <strong>Fuel consumption:</strong>
+  <%= @engine.fuel_consumption %>
+</p>
+
+<%= link_to 'Edit', edit_engine_path(@engine) %> |
+<%= link_to 'Back', engines_path %>
