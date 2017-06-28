@@ -3,7 +3,9 @@ def degree_to_radians(angle)
     return angle * Math::PI/180.0
 end
 
-def sustentation_force(atack_angle_degree,speed,plane,air_density)
+def sustentation_force(atack_angle_degree,speed,plane,phisics)
+    air_density = phisics.get_air_density_0()
+    wing_surface = plane.get_wing_surface()    
     angle_in_radians = degree_to_radians(atack_angle_degree)   
     in_air_coefficient = 1.8   
     sustentation =  air_density * speed * speed * wing_surface
@@ -60,7 +62,11 @@ def s_value(thrust_t,takeoff_coefficient_resistence,sustentation_coefficient,tak
     return numerator/denominator
 end
 
-def stall_speed(plane_weight,air_density,wing_surface,sustentation_coefficient)
+def stall_speed(plane,phisics)
+    plane_weight = plane.get_plane_weight
+    air_density  = phisics.get_air_density_0
+    wing_surface = plane.get_wing_surface
+    sustentation_coefficient = phisics.get_sustentation_coefficient
     numerator = Math.sqrt(2 * plane_weight)
     denominator = Math.sqrt(air_density * wing_surface * sustentation_coefficient)
     return numerator/denominator

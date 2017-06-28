@@ -1,7 +1,7 @@
 class Plane
 
     def initialize()
-        @air_density = 0.855 #p
+        @air_density = 1.225 #p
         @air_density_0 = 1.225 #p0
         @plane_weight = 3260000 #W
         @wing_surface = 511 #S
