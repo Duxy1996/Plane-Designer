@@ -14,9 +14,10 @@ def sustentation_force(atack_angle_degree,speed,plane,phisics)
     return sustentation
 end
 
-def sustentation_speed_one(atack_angle_degree,plane,air_density) 
+def sustentation_speed_one(atack_angle_degree,plane,phisics) 
     plane_weight = plane.get_plane_weight()
     wing_surface = plane.get_wing_surface()
+    air_density  = phisics.get_air_density_0()
     sustentation_coefficient = plane.get_sustentation_coefficient()
     angle_in_radians = degree_to_radians(atack_angle_degree)      
     s_min_not_stall = Math.sqrt((2*plane_weight)/(air_density * wing_surface * sustentation_coefficient * Math.cos(angle_in_radians))) 
@@ -24,6 +25,7 @@ def sustentation_speed_one(atack_angle_degree,plane,air_density)
 end
 
 def sustentation_speed_two(plane_weight,air_density,wing_surface,k,c) 
+    
     s_min_not_stall = Math.sqrt((2*plane_weight/(air_density * wing_surface)) * Math.sqrt(k/c)) 
     return s_min_not_stall
 end
@@ -97,16 +99,16 @@ def take_off_distance_time_resistence(plane_weight,air_density,air_density_0,win
     return [distance,time]
 end
 # Calcs for speeds
-def rotation_speed(stall_speed)
-    return 0.9*stall_speed
+def rotation_speed(plane,phisics)
+    return 0.9*stall_speed(plane,phisics)
 end
 
-def lift_speed(stall_speed)
-    return 1.1*stall_speed
+def lift_speed(plane,phisics)
+    return 1.1*stall_speed(plane,phisics)
 end
 
-def v2_speed(stall_speed)
-    return 1.2*stall_speed
+def v2_speed(plane,phisics)
+    return 1.2*stall_speed(plane,phisics)
 end
 
 def v1_speed(runway_length,acceleration,reverse_acceleration)
