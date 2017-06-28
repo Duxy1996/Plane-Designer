@@ -3,7 +3,7 @@ def degree_to_radians(angle)
     return angle * Math::PI/180.0
 end
 
-def sustentation_force(atack_angle_degree,speed,wing_surface,air_density)   
+def sustentation_force(atack_angle_degree,speed,plane,air_density)
     angle_in_radians = degree_to_radians(atack_angle_degree)   
     in_air_coefficient = 1.8   
     sustentation =  air_density * speed * speed * wing_surface
@@ -12,7 +12,10 @@ def sustentation_force(atack_angle_degree,speed,wing_surface,air_density)
     return sustentation
 end
 
-def sustentation_speed_one(atack_angle_degree,plane_weight,wing_surface,air_density,sustentation_coefficient) 
+def sustentation_speed_one(atack_angle_degree,plane,air_density) 
+    plane_weight = plane.get_plane_weight()
+    wing_surface = plane.get_wing_surface()
+    sustentation_coefficient = plane.get_sustentation_coefficient()
     angle_in_radians = degree_to_radians(atack_angle_degree)      
     s_min_not_stall = Math.sqrt((2*plane_weight)/(air_density * wing_surface * sustentation_coefficient * Math.cos(angle_in_radians))) 
     return s_min_not_stall
@@ -79,11 +82,11 @@ end
 
 def take_off_distance_time_resistence(plane_weight,air_density,air_density_0,wing_surface,plane_power,taxi_coefficient)
     speed_lof = 1.1*stall_speed(plane_weight,air_density,wing_surface,1.8)
-    thrust    =  variation_thrust_asa_function_of_density(plane_power,air_density,air_density_0)
-    thrust_t  = real_thrust_by_weight(thrust,plane_weight)
+    thrust =  variation_thrust_asa_function_of_density(plane_power,air_density,air_density_0)
+    thrust_t = real_thrust_by_weight(thrust,plane_weight)
     takeoff_sustentation_coefficient = sustentation_coefficient_takeoff(plane_weight,speed_lof,wing_surface,air_density)
-    s_value   = s_value(thrust_t,0.08,1,takeoff_sustentation_coefficient,taxi_coefficient)
-    distance  = takeoff_distance(speed_lof,9.8,thrust_t,taxi_coefficient,s_value,1)
+    s_value = s_value(thrust_t,0.08,1,takeoff_sustentation_coefficient,taxi_coefficient)
+    distance = takeoff_distance(speed_lof,9.8,thrust_t,taxi_coefficient,s_value,1)
     time = takeoff_time(speed_lof,9.8,thrust_t,taxi_coefficient,s_value,1)
     return [distance,time]
 end
@@ -119,23 +122,13 @@ def takeoff_avarage_speed(takeoff_distance,takeoff_time)
     return takeoff_avarage_speed
 end
 
-def distance_traveled(speed,time,angle)
-    distancia = speed * time * Math.cos(degree_to_radians(angle))
-    return distancia 
-end
-
-def high_traveled(speed,time,angle)
-    distancia = speed * time * Math.sin(degree_to_radians(angle))
-    return distancia    
-end
-
 #Simpson aproximation calc for 1/(1+sx*x)
 def simpson_0_1(s)
     calc = (1)+4*(1.0/(1+s*0.25*0.25))+2*(1.0/(1+s*0.5*0.5))+4*(1.0/(1+s*0.75*0.75))+(1.0/(1+s))    
     return (1/12.0)*(calc)
 end
 
-air_density = 1.225 #p
+air_density = 0.855 #p
 air_density_0 = 1.225 #p0
 plane_weight = 3260000 #W
 wing_surface = 511 #S
@@ -144,8 +137,7 @@ engine_number = 4
 taxi_coefficient = 0.02
 sustentation_coefficient = 1.8
 plane_power = engine_power * engine_number
-stall_speed = stall_speed(plane_weight,air_density,wing_surface,sustentation_coefficient)
-
+#stall_speed = stall_speed(plane_weight,air_density,wing_surface,sustentation_coefficient)
 #array = take_off_distance_time_resistence(plane_weight,air_density,air_density_0,wing_surface,plane_power,taxi_coefficient)
 #puts array
 
