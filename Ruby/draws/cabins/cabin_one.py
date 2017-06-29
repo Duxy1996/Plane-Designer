@@ -2,7 +2,8 @@ from turtle import *
 import os
 import sys
 import math
-
+import Image
+from glob import glob
 
 
 def cabin_one(longitud,mult):      
