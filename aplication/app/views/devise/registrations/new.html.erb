@@ -1,0 +1,42 @@
+<header class="sign_up_header">
+  <h1>Sign up</h1>
+</header>
+<section class="sign_up_decoration">
+
+</section>
+<section>
+  <div class="cell">
+    <div class="sign_up_card">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris laoreet dui sit amet odio lobortis, eget egestas dolor hendrerit. Morbi sit amet lacus nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis tempor feugiat bibendum. Quisque ac lobortis neque, at mattis ipsum. Nullam sed urna id ligula euismod ultrices. Donec euismod diam in nisi congue finibus. Nullam vitae ligula et lacus pulvinar ultricies eu sed nibh. Donec ullamcorper massa sollicitudin nunc porta, sed tempus erat eleifend. Donec lobortis vel mauris vel suscipit. Mauris tristique est dolor, nec finibus erat molestie sed. In lacinia leo justo. Aliquam ut tortor vehicula dolor porttitor pretium id vel risus. Curabitur sed purus eget dui tincidunt elementum. Aliquam scelerisque urna et eros placerat laoreet. Suspendisse in iaculis dui, sit amet ornare dolor.
+    </div>
+  </div>
+  <div class="cell">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "off" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "off" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Sign up" %>
+      </div>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+  </div>
+</section>
