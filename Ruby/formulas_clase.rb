@@ -71,7 +71,12 @@ def sustentation_coefficient_takeoff(plane,phisics)
     return numerator/denominator
 end
 
-def s_value(thrust_t,takeoff_coefficient_resistence,sustentation_coefficient,takeoff_sustentation_coefficient,taxi_coefficient)
+def s_value(plane,phisics)
+    thrust_t = real_thrust_by_weight(plane,phisics)
+    takeoff_coefficient_resistence = 0.08
+    sustentation_coefficient = 1
+    takeoff_sustentation_coefficient = sustentation_coefficient_takeoff(plane,phisics)
+    taxi_coefficient = phisics.get_taxi_coefficient
     numerator = -(takeoff_coefficient_resistence-taxi_coefficient*sustentation_coefficient)
     denominator = takeoff_sustentation_coefficient*(thrust_t-taxi_coefficient)
     return numerator/denominator
@@ -87,14 +92,25 @@ def stall_speed(plane,phisics)
     return numerator/denominator
 end
 
-def takeoff_time(speed_lof,gravity,thrust_t,taxi_coefficient,s_value,avarage_speed)
-    numerator = speed_lof 
+def takeoff_time(plane,phisics)
+    gravity = phisics.get_general_gravity
+    avarage_speed = 1
+    s_value = s_value(plane,phisics)
+    taxi_coefficient = phisics.get_taxi_coefficient
+    thrust_t = real_thrust_by_weight(plane,phisics)
+    numerator = lift_speed(plane,phisics) 
     denominator = gravity * (thrust_t-taxi_coefficient) 
     simp_aprox = simpson_0_1(s_value)    
     return  (numerator/denominator)*simp_aprox
 end
 
-def takeoff_distance(speed_lof,gravity,thrust_t,taxi_coefficient,s_value,avarage_speed)
+def takeoff_distance(plane,phisics)
+    speed_lof = lift_speed(plane,phisics)
+    gravity = phisics.get_general_gravity
+    thrust_t = real_thrust_by_weight(plane,phisics)
+    taxi_coefficient = phisics.get_taxi_coefficient
+    s_value = s_value(plane,phisics)
+    avarage_speed = 1
     numerator = speed_lof * speed_lof * Math.log(s_value + avarage_speed)    
     denominator = gravity * (thrust_t-taxi_coefficient) * 2 * s_value    
     return  numerator/denominator
@@ -108,13 +124,13 @@ def take_off_distance_time_resistence(plane,phisics)
     wing_surface  = plane.get_wing_surface
     plane_power   = plane.get_plane_power
     taxi_coefficient = phisics.get_taxi_coefficient
-    speed_lof = 1.1*stall_speed(plane,phisics)
+    speed_lof = lift_speed(plane,phisics)
     thrust =  variation_thrust_asa_function_of_density(plane,phisics)
     thrust_t = real_thrust_by_weight(plane,phisics)
     takeoff_sustentation_coefficient = sustentation_coefficient_takeoff(plane,phisics)
-    s_value = s_value(thrust_t,0.08,1,takeoff_sustentation_coefficient,taxi_coefficient)
-    distance = takeoff_distance(speed_lof,9.8,thrust_t,taxi_coefficient,s_value,1)
-    time = takeoff_time(speed_lof,9.8,thrust_t,taxi_coefficient,s_value,1)
+    s_value = s_value(plane,phisics)
+    distance = takeoff_distance(plane,phisics)
+    time = takeoff_time(plane,phisics)
     return [distance,time]
 end
 # Calcs for speeds

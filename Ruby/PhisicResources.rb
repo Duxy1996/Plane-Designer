@@ -14,6 +14,7 @@ class PhisicResources
         @air_density_50 = 0.585 
         @taxi_coefficient = 0.02
         @sustentation_coefficient = 1.8
+        @general_gravity = 9.8
 
     end    
 
@@ -28,5 +29,7 @@ class PhisicResources
     def get_sustentation_coefficient()
         return @sustentation_coefficient
     end
-
+    def get_general_gravity()
+        return @general_gravity
+    end
 end
